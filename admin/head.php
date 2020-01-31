@@ -13,11 +13,11 @@ $setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setti
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ZUI 标准版压缩后的 CSS 文件 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/zui/1.9.1/css/zui.min.css">
+    <link rel="stylesheet" href="../assets/zui_package/1.9.1/css/zui.min.css">
     <!-- ZUI Javascript 依赖 jQuery -->
-    <script src="//cdn.bootcss.com/zui/1.9.1/lib/jquery/jquery.js"></script>
+    <script src="../assets/zui_package/1.9.1/lib/jquery/jquery.js"></script>
     <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
-    <script src="//cdn.bootcss.com/zui/1.9.1/js/zui.min.js"></script>
+    <script src="../assets/zui_package/1.9.1/js/zui.min.js"></script>
     <title><?php echo $title;?></title>
 </head>
 <body>

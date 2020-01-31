@@ -17,12 +17,12 @@ if ($defend_status != 0){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ZUI 标准版压缩后的 CSS 文件 -->
-    <link rel="stylesheet" href="//cdn.bootcss.com/zui/1.9.1/css/zui.min.css">
+    <link rel="stylesheet" href="./assets/zui_package/1.9.1/css/zui.min.css">
     <!-- ZUI Javascript 依赖 jQuery -->
-    <script src="//cdn.bootcss.com/zui/1.9.1/lib/jquery/jquery.js"></script>
+    <script src="./assets/zui_package/1.9.1/lib/jquery/jquery.js"></script>
     <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
-    <script src="//cdn.bootcss.com/zui/1.9.1/js/zui.min.js"></script>
-    <link rel="stylesheet" href="assets/css/index_common.css">
+    <script src="./assets/zui_package/1.9.1/js/zui.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/index_common.css">
     <title><?php echo $conf['sitename']?></title>
 </head>
 <style>
@@ -42,7 +42,7 @@ if ($defend_status != 0){
         <div class="col-md-4">
             <div class="card" style="background: #ffffff;border-radius: 10px;">
                 <div class="logo">
-                    <img src="assets/imgs/logo.png" class="img-rounded" alt="圆角图片">
+                    <img src="./assets/imgs/logo.png" class="img-rounded" alt="logo">
                 </div>
             </div>
             <?php

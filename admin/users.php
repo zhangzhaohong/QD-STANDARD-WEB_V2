@@ -10,10 +10,10 @@ $page=(isset($_GET['page'])?$_GET['page']:1);
 <html>
 <link rel="stylesheet" href="../assets/css/setting_common.css">
 <body>
-<link href="//cdn.bootcss.com/zui/1.9.1/lib/datagrid/zui.datagrid.css" rel="stylesheet">
-<script src="//cdn.bootcss.com/zui/1.9.1/lib/datagrid/zui.datagrid.js"></script>
-<link href="//cdn.bootcss.com/zui/1.9.1/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
-<script src="//cdn.bootcss.com/zui/1.9.1/lib/datagrid/zui.datagrid.min.js"></script>
+<link href="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.css" rel="stylesheet">
+<script src="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.js"></script>
+<link href="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
+<script src="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.min.js"></script>
 <link rel="stylesheet" href="../assets/css/users_common.css">
 <script src="../assets/js/setting_common.js"></script>
 <script>
@@ -36,10 +36,10 @@ $page=(isset($_GET['page'])?$_GET['page']:1);
 <?php
 
 function init_library(){
-    echo '<link href="//cdn.bootcss.com/zui/1.9.1/lib/datetimepicker/datetimepicker.css" rel="stylesheet">';
-    echo '<script src="//cdn.bootcss.com/zui/1.9.1/lib/datetimepicker/datetimepicker.js"></script>';
-    echo '<link href="//cdn.bootcss.com/zui/1.9.1/lib/datetimepicker/datetimepicker.min.css" rel="stylesheet">';
-    echo '<script src="//cdn.bootcss.com/zui/1.9.1/lib/datetimepicker/datetimepicker.min.js"></script>';
+    echo '<link href="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.css" rel="stylesheet">';
+    echo '<script src="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.js"></script>';
+    echo '<link href="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.min.css" rel="stylesheet">';
+    echo '<script src="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.min.js"></script>';
 }
 
 $my=isset($_GET['my'])?$_GET['my']:null;
