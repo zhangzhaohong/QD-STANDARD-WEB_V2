@@ -1,1 +1,0 @@
-INSERT INTO `config`(`k`, `v`) VALUES ('mail_debug','0');
