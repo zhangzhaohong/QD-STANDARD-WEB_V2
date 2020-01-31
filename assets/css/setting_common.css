@@ -1,0 +1,12 @@
+/*
+*setting
+*CSSfile
+*/
+.panel{
+    margin: 20px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
