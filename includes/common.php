@@ -68,12 +68,11 @@ if (!$conf['version'] || !$conf['version'] != ""){
     if ($conf['version'] < DB_VERSION) {
         if (!$install) {
             header('Content-type:text/html;charset=utf-8');
-            echo '请先完成网站升级！<a href="/install/update.php"><font color=red>点此升级</font></a>';
+            echo "<script language='javascript'>alert('请先等待管理员完成网站数据库升级!');window.location.href='../notice.html';</script>";
             exit(0);
         }
     }
 }
-
 $conf_qq_jump=$DB->get_row("select * from config where k='qq_jump' limit 1");
 $qq_jump = $conf_qq_jump['v'];
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') && $qq_jump == 1){

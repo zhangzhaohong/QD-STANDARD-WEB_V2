@@ -108,13 +108,26 @@ function checkmobile() {
     }
 }
 
-function checkIfActive($nstring,$string) {
-        $b = explode(",", $string);
-        for ($i = 0; $i <= count($b) - 1; $i ++){
-            if ($nstring == $b[$i]){
-               return 'active';
-            }else if ($i == count($b) - 1){
-                return '';
-            }
+function checkIfActive($nstring,$string)
+{
+    $b = explode(",", $string);
+    for ($i = 0; $i <= count($b) - 1; $i++) {
+        if ($nstring == $b[$i]) {
+            return 'active';
+        } else if ($i == count($b) - 1) {
+            return '';
         }
     }
+}
+
+/**
+ * 获取时间戳到毫秒
+ * @return bool|string
+ */
+function getMillisecond(){
+    list($msec, $sec) = explode(' ', microtime());
+    $msectime =  (float)sprintf('%.0f', (floatval($msec) + floatval($sec)) * 1000);
+    return $msectimes = substr($msectime,0,13);
+}
+
+

@@ -5,7 +5,7 @@ include_once '../includes/member.php';
 if($islogin==1){}else exit("<script language='javascript'>window.location.href='login.php';</script>");
 $index_file = 'index';
 $users_file = 'users,users_data,users_data_config';
-$setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setting_mail,setting_bottom';
+$setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setting_mail,setting_bottom,update_database';
 ?>
 <html>
 <head>
@@ -70,6 +70,9 @@ if (checkmobile()) {?>
                     <li>
                         <a href="setting_mail.php">邮件账号配置</a>
                     </li>
+                    <li>
+                        <a href="update_database.php">数据库更新</a>
+                    </li>
                 </ul>
             </li>
             <li>
@@ -125,6 +128,9 @@ if (checkmobile()) {?>
                         </li>
                         <li>
                             <a href="setting_mail.php">邮件账号配置</a>
+                        </li>
+                        <li>
+                            <a href="update_database.php">数据库更新</a>
                         </li>
                     </ul>
                 </li>
