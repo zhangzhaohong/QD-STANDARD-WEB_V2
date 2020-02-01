@@ -68,26 +68,11 @@ if (!$conf['version'] || !$conf['version'] != ""){
     if ($conf['version'] < DB_VERSION) {
         if (!$install) {
             header('Content-type:text/html;charset=utf-8');
-            require '../includes/predis/autoload.php';
-            try {
-                //连接本地的 Redis 服务
-                $redis = new Predis\Client();
-                include_once SYSTEM_ROOT . 'Aes.php';
-                include_once 'function.php';
-                Security::set_256_key(getMillisecond().mt_rand(100000,999999).getMillisecond());
-                $update_token = Security::encrypt(getMillisecond());
-                $update_code = Security::encrypt(mt_rand(10000000,99999999));
-                $redis -> set($update_token,$update_code);
-                $redis -> expire($update_token, 3600);
-                echo '请在一小时内完成网站升级！超过一小时请刷新本页面<a href="/update/index.php?token="'.$update_token.'"&code="'.$update_code.'><font color=red>点此升级</font></a>';
-            } catch (Exception $e){
-                echo 'redis异常，请稍后重试！';
-            }
+            echo "<script language='javascript'>alert('请先等待管理员完成网站数据库升级!');window.location.href='../notice.html';</script>";
             exit(0);
         }
     }
 }
-
 $conf_qq_jump=$DB->get_row("select * from config where k='qq_jump' limit 1");
 $qq_jump = $conf_qq_jump['v'];
 if(strpos($_SERVER['HTTP_USER_AGENT'], 'QQ/') && $qq_jump == 1){
