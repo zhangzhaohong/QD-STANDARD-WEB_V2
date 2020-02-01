@@ -28,4 +28,3 @@ update `config` SET v = '<table class="table table-bordered" style="margin-botto
 update `config` SET v = '<h3>系统已经与2019年10月28日更新完成，请及时更新APP版本。</h3>
 <p>管理组</p>
 <p>2019年10月28日</p>' WHERE k = 'notice';
-UPDATE `config` SET v = '101' WHERE k = 'version';

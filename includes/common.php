@@ -68,7 +68,7 @@ if (!$conf['version'] || !$conf['version'] != ""){
     if ($conf['version'] < DB_VERSION) {
         if (!$install) {
             header('Content-type:text/html;charset=utf-8');
-            echo '请先完成网站升级！<a href="/install/update.php"><font color=red>点此升级</font></a>';
+            echo '请先完成网站升级！<a href="/update/index.php"><font color=red>点此升级</font></a>';
             exit(0);
         }
     }
