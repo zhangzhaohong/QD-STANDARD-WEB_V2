@@ -1,6 +1,35 @@
 <?php
 $install = true;
 require_once('../includes/common.php');
+require '../includes/predis/autoload.php';
+$update_token = isset($_GET['token']) ? $_GET['token'] : "";
+$update_code = isset($_GET['code']) ? $_GET['code'] : "";
+if ($update_token == "" || $update_code == ""){
+    exit("<script language='javascript'>alert('参数缺失，请稍后重试！');window.location.href='../';</script>");
+}
+try {
+    //连接本地的 Redis 服务
+    $redis = new Predis\Client();
+    $random_code = $redis->get($update_token);
+    if ($random_code == null || $random_code == "") {
+        exit("<script language='javascript'>alert('token异常，请稍后重试！');window.location.href='../';</script>");
+    } elseif ($random_code == $update_code){
+        /**
+         * 使用过后清除key
+         * 无法再次使用
+         */
+        $redis->del($update_token);
+    } else {
+        exit("<script language='javascript'>alert('参数校验失败，请稍后重试！');window.location.href='../';</script>");
+    }
+} catch (Exception $e){
+    exit("<script language='javascript'>alert('redis异常，请稍后重试！');window.location.href='../';</script>");
+}
+/**
+ * 遍历文件目录
+ * @param $file
+ * @return array
+ */
 function list_file($file){
     //初始化数组
     $file_arr = array();
@@ -59,7 +88,7 @@ if ($data_version == null || $data_version == ""){
      * 无update文件
      */
     if (count($sql_file) == 0){
-        exit("<script language='javascript'>alert('网站数据库已经是最新版本了！');window.location.href='../';</script>");
+        exit("<script language='javascript'>alert('未发现数据库更新文件！');window.location.href='../';</script>");
     }
     foreach ($sql_file as $value)
     {

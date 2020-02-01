@@ -68,7 +68,21 @@ if (!$conf['version'] || !$conf['version'] != ""){
     if ($conf['version'] < DB_VERSION) {
         if (!$install) {
             header('Content-type:text/html;charset=utf-8');
-            echo '请先完成网站升级！<a href="/update/index.php"><font color=red>点此升级</font></a>';
+            require '../includes/predis/autoload.php';
+            try {
+                //连接本地的 Redis 服务
+                $redis = new Predis\Client();
+                include_once SYSTEM_ROOT . 'Aes.php';
+                include_once 'function.php';
+                Security::set_256_key(getMillisecond().mt_rand(100000,999999).getMillisecond());
+                $update_token = Security::encrypt(getMillisecond());
+                $update_code = Security::encrypt(mt_rand(10000000,99999999));
+                $redis -> set($update_token,$update_code);
+                $redis -> expire($update_token, 3600);
+                echo '请在一小时内完成网站升级！超过一小时请刷新本页面<a href="/update/index.php?token="'.$update_token.'"&code="'.$update_code.'><font color=red>点此升级</font></a>';
+            } catch (Exception $e){
+                echo 'redis异常，请稍后重试！';
+            }
             exit(0);
         }
     }
