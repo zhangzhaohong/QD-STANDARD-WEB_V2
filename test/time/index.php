@@ -1,4 +1,5 @@
 <?php
+exit("<script>window.location.href='../../'</script>");
 //php的时间是以秒算。js的时间以毫秒算
 date_default_timezone_set("Asia/Hong_Kong");//地区
 //配置每天的活动时间段
