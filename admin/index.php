@@ -7,6 +7,16 @@ $file = 'index';
 include_once 'head.php';
 include_once 'version.php';
 $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+/**
+ * key为空情况下需强制配置key
+ * 一般首次安装会弹出
+ */
+function initKeyIfEmpty(){
+    if (Security::get_128_key() == "" || Security::get_256_key() == ""){
+        echo '<script>alert("请先正确配置加密秘钥！\n秘钥不能为空~");window.location.href="./setting_keys.php"</script>';
+    }
+}
+initKeyIfEmpty();
 ?>
 <html>
 <link rel="stylesheet" href="../assets/css/setting_common.css">

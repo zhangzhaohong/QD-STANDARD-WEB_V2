@@ -103,42 +103,39 @@ $lefttime = $endtime - $nowtime; //实际剩下的时间（秒）
     // -->
 </script>
 <body>
-<div class="panel panel-info">
-    <div class="panel-heading" contenteditable="false">数据库更新</div>
-    <div class="panel-body" contenteditable="false" style="padding: 0px;">
-        <?php
-        try {
-            //连接本地的 Redis 服务
-            $redis = new Predis\Client();
-            Security::set_256_key(getMillisecond().mt_rand(100000,999999).getMillisecond());
-            $update_token = Security::encrypt(getMillisecond());
-            $update_code = Security::encrypt(mt_rand(10000000,99999999));
-            $redis -> set($update_token,$update_code);
-            $redis -> expire($update_token, 3600);
-            if ($redis->isConnected())
-                $redis->disconnect();
-        } catch (Exception $e){
-            echo 'redis异常，请稍后重试！';
-        }
-        ?>
-        <form action="../update/index.php?token=<?php echo $update_token?>&code=<?php echo $update_code?>" method="post" role="form">
-            <div style="margin: 10px 10px 20px;">请在页面有效期内完成网站升级！</div>
-            <div style="margin: 10px 10px 20px;">剩余有效期：</div>
-            <h1 style="margin: 10px 10px 20px;"><strong id="RemainY">XX</strong>:<strong id="RemainH">XX</strong>:<strong id="RemainM">XX</strong>:<strong id="RemainS">XX</strong></h1>
-            <!-- 条纹效果 -->
-            <div class="progress progress-striped" style="margin: 10px 10px 20px;">
-                <div class="progress-bar progress-bar-success" id="timeProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
-            </div>
-            <div style="margin: 10px 10px 20px;"><button class="btn btn-primary" type="submit" style="width: 100%">立即升级</button></div>
-        </form>
+<div id="container">
+    <div class="panel panel-info">
+        <div class="panel-heading" contenteditable="false">数据库更新</div>
+        <div class="panel-body" contenteditable="false" style="padding: 0px;">
+            <?php
+            try {
+                //连接本地的 Redis 服务
+                $redis = new Predis\Client();
+                Security::set_256_key(getMillisecond().mt_rand(100000,999999).getMillisecond());
+                $update_token = Security::encrypt(getMillisecond());
+                $update_code = Security::encrypt(mt_rand(10000000,99999999));
+                $redis -> set($update_token,$update_code);
+                $redis -> expire($update_token, 3600);
+                if ($redis->isConnected())
+                    $redis->disconnect();
+            } catch (Exception $e){
+                echo 'redis异常，请稍后重试！';
+            }
+            ?>
+            <form action="../update/index.php?token=<?php echo $update_token?>&code=<?php echo $update_code?>" method="post" role="form">
+                <div style="margin: 10px 10px 20px;">请在页面有效期内完成网站升级！</div>
+                <div style="margin: 10px 10px 20px;">剩余有效期：</div>
+                <h1 style="margin: 10px 10px 20px;"><strong id="RemainY">XX</strong>:<strong id="RemainH">XX</strong>:<strong id="RemainM">XX</strong>:<strong id="RemainS">XX</strong></h1>
+                <!-- 条纹效果 -->
+                <div class="progress progress-striped" style="margin: 10px 10px 20px;">
+                    <div class="progress-bar progress-bar-success" id="timeProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                </div>
+                <div style="margin: 10px 10px 20px;"><button class="btn btn-primary" type="submit" style="width: 100%">立即升级</button></div>
+            </form>
+        </div>
     </div>
 </div>
 <script src="../assets/js/setting_common.js"></script>
-<?php
-if ($mod == 'update'){
-
-}
-?>
 </body>
 <?php
 include_once 'foot.php';

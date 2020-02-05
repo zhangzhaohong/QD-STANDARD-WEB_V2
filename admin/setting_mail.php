@@ -22,7 +22,7 @@ global $debug_Status;
 <html>
 <body>
 <div class="panel panel-info">
-    <div class="panel-heading" contenteditable="false">API加解密KEY配置</div>
+    <div class="panel-heading" contenteditable="false">MAIL smtp 账号密码配置</div>
     <div class="panel-body load-indicator" id="mail_common" data-loading="正在处理..." contenteditable="false">
         <form action="./setting_mail.php?mod=setting" method="post" role="form">
             <div class="input-control has-label-left">
