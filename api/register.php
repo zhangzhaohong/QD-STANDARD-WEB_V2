@@ -2,7 +2,6 @@
 //$is_defend=false;
 include_once '../includes/common.php';
 require '../includes/predis/autoload.php';
-
 function getAccount(){
     //连接本地的 Redis 服务
     $redis = new Predis\Client();
