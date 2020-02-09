@@ -1,5 +1,6 @@
 <?php
 $install = true;
+$debugMode = false;
 require_once('../includes/common.php');
 require '../includes/predis/autoload.php';
 $update_token = isset($_GET['token']) ? $_GET['token'] : "";
@@ -27,6 +28,7 @@ try {
 }
 /**
  * 遍历文件目录
+ * 不遍历patch目录，但是最后执行完毕会删除
  * @param $file
  * @return array
  */
@@ -38,7 +40,7 @@ function list_file($file){
     //遍历文件夹
     foreach($temp as $v){
         $a=$file.'/'.$v;
-        if(is_dir($a)){//如果是文件夹则执行
+        if(is_dir($a) && $a != $file.'/patch'){//如果是文件夹则执行
             if($v=='.' || $v=='..'){//判断是否为系统隐藏的文件.和..  如果是则跳过否则就继续往下走，防止无限循环再这里。
                 continue;
             }
@@ -71,6 +73,92 @@ function del_UpdateFile($file){
         return $status;
     }
 }
+
+function delFile($dirName,$delSelf=false){
+    if(file_exists($dirName) && $handle = opendir($dirName)){
+        while(false !==($item = readdir( $handle))){
+            if($item != '.' && $item != '..'){
+                if(file_exists($dirName.'/'.$item) && is_dir($dirName.'/'.$item)){
+                    delFile($dirName.'/'.$item);
+                }else{
+                    if(!unlink($dirName.'/'.$item)){
+                        return false;
+                    }
+                }
+            }
+        }
+        closedir($handle);
+        if($delSelf){
+            if(!rmdir($dirName)){
+                return false;
+            }
+        }
+    }else{
+        return false;
+    }
+    return true;
+}
+
+//清空文件夹函数和清空文件夹后删除空文件夹函数的处理
+function deldir($path){
+    //如果是目录则继续
+    if(is_dir($path)){
+        //扫描一个文件夹内的所有文件夹和文件并返回数组
+        $p = scandir($path);
+        foreach($p as $val){
+            //排除目录中的.和..
+            if($val !="." && $val !=".."){
+                //如果是目录则递归子目录，继续操作
+                if(is_dir($path.$val)){
+                    //子目录中操作删除文件夹和文件
+                    deldir($path.$val.'/');
+                    //目录清空后删除空文件夹
+                    @rmdir($path.$val.'/');
+                }else{
+                    //如果是文件直接删除
+                    unlink($path.$val);
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 判断更新类型
+ * type:1 为php类需执行类别
+ * type:2 为sql类
+ * type:3 不处理
+ * @param $value
+ * @return int
+ */
+function checkFile($value){
+    $type = 0;
+    if ($value == null || $value == ""){
+        $type = 0;
+    }elseif (endsWith($value, ".php")){
+        $type = 1;
+    }elseif (endsWith($value, ".sql")){
+        $type = 2;
+    }
+    return $type;
+}
+// Function to check the string is ends
+// with given substring or not
+function endsWith($string, $endString)
+{
+    $len = strlen($endString);
+    if ($len == 0) {
+        return true;
+    }
+    return (substr($string, -$len) === $endString);
+}
+// Function to check string starting
+// with given substring
+function startsWith ($string, $startString)
+{
+    $len = strlen($startString);
+    return (substr($string, 0, $len) === $startString);
+}
 @header('Content-Type: text/html; charset=UTF-8');
 /**
  * get Data Version
@@ -82,52 +170,79 @@ if ($data_version == null || $data_version == ""){
     exit("<script language='javascript'>alert('网站数据库升级失败！');window.location.href='../';</script>");
 }else{
     $file = "./update_file";
-    $sql_file = list_file($file);
+    $fileList = list_file($file);
     $update_num = 0;
     /**
      * 无update文件
      */
-    if (count($sql_file) == 0){
+    if (count($fileList) == 0 && $debugMode == false){
         exit("<script language='javascript'>alert('未发现数据库更新文件！');window.location.href='../';</script>");
     }
-    foreach ($sql_file as $value)
+    foreach ($fileList as $value)
     {
         $update_num ++;
         $version = get_Version(explode("/",$value)[2]);
-        if ($data_version < $version){
-            /**
-             * get sql
-             **/
-            $sqls = file_get_contents($value);
-            /**
-             * run Sql COMMAND
-             */
-            $explode = explode(';', $sqls);
-            $num = count($explode);
-            foreach ($explode as $sql) {
-                if ($sql = trim($sql)) {
-                    $DB->query($sql);
+        if ($data_version < $version || $update_num <= count($fileList) && count($fileList) > 0){
+            if ($version != null || $version != "") {
+                /**
+                 * type:0 忽略
+                 * type:1 php
+                 * type:2 sql
+                 */
+                switch (checkFile($value)) {
+                    case "0":
+                        //jump，不操作
+                        break;
+                    case "1":
+                        include_once $value;
+                        break;
+                    case "2":
+                        /**
+                         * get sql
+                         **/
+                        $sqls = file_get_contents($value);
+                        /**
+                         * run Sql COMMAND
+                         */
+                        $explode = explode(';', $sqls);
+                        $num = count($explode);
+                        foreach ($explode as $sql) {
+                            if ($sql = trim($sql)) {
+                                $DB->query($sql);
+                            }
+                        }
+                        break;
                 }
-            }
-            /**
-             * save version
-             */
-            if (!$DB->query("update config set v='$version' where k='version'")){
-                exit("<script language='javascript'>alert('程序出错');window.location.href='../';</script>");
-                break;
+                /**
+                 * save version
+                 */
+                if (!$DB->query("update config set v='$version' where k='version'")) {
+                    exit("<script language='javascript'>alert('程序出错');window.location.href='../';</script>");
+                    break;
+                }
             }
             /**
              * 删除文件
              */
-            if (del_UpdateFile($value) == false){
-                exit("<script language='javascript'>alert('删除文件错误！');window.location.href='../';</script>");
-                break;
+            if ($debugMode == false) {
+                if ($update_num >= count($fileList)){
+                    deldir($file.'/');
+                }else {
+                    if (checkFile($value) == 1 && checkFile($value) == 2) {
+                        if (del_UpdateFile($value) == false) {
+                            exit("<script language='javascript'>alert('删除文件错误！');window.location.href='../';</script>");
+                            break;
+                        }
+                    } else {
+                        //不处理
+                    }
+                }
             }
             /**
              * 全部执行完毕
              * 升级完成
              */
-            if ($update_num >= count($sql_file)) {
+            if ($update_num >= count($fileList) && $debugMode == false) {
                 exit("<script language='javascript'>alert('网站数据库升级完成！');window.location.href='../';</script>");
                 break;
             }
