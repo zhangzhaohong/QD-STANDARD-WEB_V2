@@ -12,7 +12,7 @@ $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset(
  * 一般首次安装会弹出
  */
 function initKeyIfEmpty(){
-    if (Security::get_128_key() == "" || Security::get_256_key() == ""){
+    if ($GLOBALS['key_256'] == "" || $GLOBALS['key_128'] == ""){
         echo '<script>alert("请先正确配置加密秘钥！\n秘钥不能为空~");window.location.href="./setting_keys.php"</script>';
     }
 }
