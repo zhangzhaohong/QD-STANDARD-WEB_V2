@@ -108,18 +108,47 @@ $lefttime = $endtime - $nowtime; //实际剩下的时间（秒）
         <div class="panel-heading" contenteditable="false">数据库更新</div>
         <div class="panel-body" contenteditable="false" style="padding: 0px;">
             <?php
+            /**
+             * 判断ActionCode是否不为空，否则销毁之前code
+             */
+            if ($_SESSION['ActionCode'] != null || $_SESSION['ActionCode'] != ""){
+                unset($_SESSION['ActionCode']);
+            }
+            /**
+             * 随机key不为空，销毁之前的key
+             */
+            if ($_SESSION['RandomKey'] != null || $_SESSION['RandomKey'] != ""){
+                unset($_SESSION['RandomKey']);
+            }
             try {
                 //连接本地的 Redis 服务
                 $redis = new Predis\Client();
-                Security::set_256_key(getMillisecond().mt_rand(100000,999999).getMillisecond());
+                $randrom_key = getMillisecond().mt_rand(100000,999999).getMillisecond();
+                Security::set_256_key($randrom_key);
                 $update_token = Security::encrypt(getMillisecond());
                 $update_code = Security::encrypt(mt_rand(10000000,99999999));
                 $redis -> set($update_token,$update_code);
                 $redis -> expire($update_token, 3600);
+                /**
+                 * 判断是否为空，否则删除
+                 */
+                if ($redis -> get("ActionCodeTmp") != null || $redis -> get("ActionCodeTmp") != ""){
+                    $redis -> del("ActionCodeTmp");
+                }
+                $ActionCode = Security::encrypt(mt_rand(10000000,99999999));
+                $redis -> set("ActionCodeTmp", Security::encrypt($ActionCode));
+                $redis -> expire("ActionCodeTmp", 3600);
+                if ($redis -> get("RandomKeyTmp") != null || $redis -> get("RandomKeyTmp") != ""){
+                    $redis -> del("RandomKeyTmp");
+                }
+                $redis -> set("RandomKeyTmp", $randrom_key);
+                $redis -> expire("RandomKeyTmp", 3600);
+                $_SESSION['ActionCode'] = $ActionCode;
                 if ($redis->isConnected())
                     $redis->disconnect();
-            } catch (Exception $e){
-                echo 'redis异常，请稍后重试！';
+            } catch (Exception $e){ ?>
+                <div style="margin: 10px 10px 20px;"><?php echo 'redis异常，请稍后重试！';?></div>
+                <?php
             }
             ?>
             <form action="../update/index.php?token=<?php echo $update_token?>&code=<?php echo $update_code?>" method="post" role="form">

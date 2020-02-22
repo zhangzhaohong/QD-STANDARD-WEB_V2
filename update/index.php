@@ -5,25 +5,55 @@ require_once('../includes/common.php');
 require '../includes/predis/autoload.php';
 $update_token = isset($_GET['token']) ? $_GET['token'] : "";
 $update_code = isset($_GET['code']) ? $_GET['code'] : "";
+$ActionCodeTmp = $_SESSION['ActionCode'] ? $_SESSION['ActionCode'] : "";
 if ($update_token == "" || $update_code == ""){
     exit("<script language='javascript'>alert('参数缺失，请稍后重试！');window.location.href='../';</script>");
 }
 try {
     //连接本地的 Redis 服务
     $redis = new Predis\Client();
-    $random_code = $redis->get($update_token);
+    $random_key = $redis -> get("RandomKeyTmp");
+    $redis -> del("RandomKeyTmp");
+    if ($random_key == null || $random_key == ""){
+        if ($redis->isConnected())
+            $redis->disconnect();
+        exit("<script language='javascript'>alert('程序异常，请稍后重试！');window.location.href='../';</script>");
+    } elseif ($ActionCodeTmp == ""){
+        if ($redis->isConnected())
+            $redis->disconnect();
+        exit("<script language='javascript'>alert('授权码不存在，请稍后重试！');window.location.href='../';</script>");
+    } else {
+        Security::set_256_key($random_key);
+        $ActionCodeTmp = Security::encrypt($ActionCodeTmp);
+    }
+    $ActionCode = $redis -> get("ActionCodeTmp");
+    $redis -> del("ActionCodeTmp");
+    if ($ActionCode == null || $ActionCode == "" || $ActionCode != $ActionCodeTmp){
+        if ($redis->isConnected())
+            $redis->disconnect();
+        exit("<script language='javascript'>alert('授权码验证失败，请稍后重试！');window.location.href='../';</script>");
+    }
+    $random_code = $redis -> get($update_token);
     if ($random_code == null || $random_code == "") {
+        if ($redis->isConnected())
+            $redis->disconnect();
         exit("<script language='javascript'>alert('token异常，请稍后重试！');window.location.href='../';</script>");
     } elseif ($random_code == $update_code){
         /**
          * 使用过后清除key
          * 无法再次使用
          */
-        $redis->del($update_token);
+        $redis-> del ($update_token);
     } else {
+        if ($redis->isConnected())
+            $redis->disconnect();
         exit("<script language='javascript'>alert('参数校验失败，请稍后重试！');window.location.href='../';</script>");
     }
+    if ($redis->isConnected())
+        $redis->disconnect();
 } catch (Exception $e){
+    if ($redis->isConnected())
+        $redis->disconnect();
     exit("<script language='javascript'>alert('redis异常，请稍后重试！');window.location.href='../';</script>");
 }
 /**
