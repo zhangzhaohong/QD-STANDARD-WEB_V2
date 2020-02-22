@@ -1,9 +1,9 @@
 <?php
 /**
- * 数据库更新
+ * 系统更新
  **/
-$title = '数据库更新';
-$file = 'update_database';
+$title = '系统更新';
+$file = 'update_system';
 include_once 'head.php';
 require '../includes/predis/autoload.php';
 $mod=(isset($_GET['mod'])?$_GET['mod']:NULL);
