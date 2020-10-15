@@ -123,8 +123,8 @@ CREATE TABLE `config` (
 -- Records of config
 -- ----------------------------
 BEGIN;
-INSERT INTO `config` VALUES ('admin_pwd', 'admin');
-INSERT INTO `config` VALUES ('admin_user', 'superadmin');
+INSERT INTO `config` VALUES ('admin_user', 'admin');
+INSERT INTO `config` VALUES ('admin_pwd', 'superadmin');
 INSERT INTO `config` VALUES ('announce', '');
 INSERT INTO `config` VALUES ('bottom', '');
 INSERT INTO `config` VALUES ('cache', '');
