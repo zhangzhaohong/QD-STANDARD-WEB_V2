@@ -17,11 +17,11 @@ if ($defend_status != 0){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ZUI 标准版压缩后的 CSS 文件 -->
-    <link rel="stylesheet" href="./assets/zui_package/1.9.1/css/zui.min.css">
+    <link rel="stylesheet" href="./assets/zui_package/1.9.2/css/zui.min.css">
     <!-- ZUI Javascript 依赖 jQuery -->
-    <script src="./assets/zui_package/1.9.1/lib/jquery/jquery.js"></script>
+    <script src="./assets/zui_package/1.9.2/lib/jquery/jquery.js"></script>
     <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
-    <script src="./assets/zui_package/1.9.1/js/zui.min.js"></script>
+    <script src="./assets/zui_package/1.9.2/js/zui.min.js"></script>
     <link rel="stylesheet" href="./assets/css/index_common.css">
     <title><?php echo $conf['sitename']?></title>
 </head>

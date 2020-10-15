@@ -106,7 +106,7 @@ else {
         ?>
             <div class="table-responsive">
                 <table class="table table-hover">
-                    <thead><tr><th>账号</th><th>用户key</th><th>积分</th><th>威望</th><th>成长值</th><th>登录奖励领取日期</th><th>签到日期</th><th>连续签到天数</th><th>操作</th></tr></thead>
+                    <thead><tr><th>账号</th><th>用户key</th><th>积分</th><th>威望</th><th>成长值</th><th>登录奖励领取日期</th><th>签到日期</th><th>连续签到天数</th><th>累计课程签到次数</th><th>操作</th></tr></thead>
                     <tbody>
                     <?php
                     $pagesize = 30;
@@ -124,7 +124,17 @@ else {
                     $rs=$DB->query("SELECT * FROM users_data WHERE {$sql} order by jobid desc limit $offset,$pagesize");
                     while($res = $DB->fetch($rs))
                     {
-                        echo '<tr><td><b>'.$res['account'].'</b></td><td>'.$res['user_key'].'</td><td>'.$res['integrals'].'</td><td>'.$res['prestige'].'</td><td>'.$res['grow_integrals'].'</td><td>'.$res['last_login'].'</td><td>'.$res['last_sign'].'</td><td>'.$res['keep_sign_times'].'</td><td>'.'<a href="./users_data.php?my=edit&jobid='.$res['jobid'].'" class="btn btn-info btn-xs">编辑</a></td></tr>';
+                        $userInfo = $DB->get_row("SELECT * FROM users WHERE account='{$res['account']}' limit 1");
+                        if ($userInfo) {
+                            if ($userInfo['signed_times'] == "" || $userInfo['signed_times'] == null) {
+                                $signedTimes = 0;
+                            } else {
+                                $signedTimes = $userInfo['signed_times'];
+                            }
+                        } else {
+                            $signedTimes = 0;
+                        }
+                        echo '<tr><td><b>'.$res['account'].'</b></td><td>'.$res['user_key'].'</td><td>'.$res['integrals'].'</td><td>'.$res['prestige'].'</td><td>'.$res['grow_integrals'].'</td><td>'.$res['last_login'].'</td><td>'.$res['last_sign'].'</td><td>'.$res['keep_sign_times'].'</td><td>'.$signedTimes.'</td><td>'.'<a href="./users_data.php?my=edit&jobid='.$res['jobid'].'" class="btn btn-info btn-xs">编辑</a></td></tr>';
                     }
                     ?>
                     </tbody>

@@ -11,9 +11,9 @@ function loginSuccess() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
-        window.location.href='./';
+        window.location.href = './';
     }, 500);
 }
 
@@ -30,7 +30,7 @@ function welcomeBack() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
     }, 1000);
 }
@@ -48,7 +48,7 @@ function codeWrong() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
         history.go(-1);
     }, 1000);
@@ -67,7 +67,7 @@ function idCodeWrong() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
         history.go(-1);
     }, 1000);
@@ -86,9 +86,9 @@ function logoutMessage() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
-        window.location.href='./login.php';
+        window.location.href = './login.php';
     }, 1000);
 }
 
@@ -105,9 +105,9 @@ function isloginMessage() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
-        window.location.href='./';
+        window.location.href = './';
     }, 500);
 }
 
@@ -124,7 +124,7 @@ function SuccessMessage() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
         history.go(-1);
     }, 500);
@@ -143,7 +143,7 @@ function FailedMessage() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
         history.go(-1);
     }, 500);
@@ -162,9 +162,9 @@ function SuccessSettingMessage() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
-        window.location.href=getUrlWithoutParm(window.location.href);
+        window.location.href = getUrlWithoutParm(window.location.href);
     }, 500);
 }
 
@@ -181,10 +181,10 @@ function FailedSettingMessage() {
     myMessager.show();
 
     // 5 秒之后隐藏消息
-    setTimeout(function() {
+    setTimeout(function () {
         myMessager.hide();
-        window.location.href=getUrlWithoutParm(window.location.href);
-        }, 500);
+        window.location.href = getUrlWithoutParm(window.location.href);
+    }, 500);
 }
 
 //获取url
@@ -196,19 +196,19 @@ function getUrlWithoutParm(url) {
 }
 
 // 删除url中某个参数,并跳转
-function funcUrlDel(name){
+function funcUrlDel(name) {
     var loca = window.location;
     var baseUrl = loca.origin + loca.pathname + "?";
     var query = loca.search.substr(1);
-    if (query.indexOf(name)>-1) {
+    if (query.indexOf(name) > -1) {
         var obj = {}
         var arr = query.split("&");
         for (var i = 0; i < arr.length; i++) {
             arr[i] = arr[i].split("=");
             obj[arr[i][0]] = arr[i][1];
-        };
+        }
         delete obj[name];
-        var url = baseUrl + JSON.stringify(obj).replace(/[\"\{\}]/g,"").replace(/\:/g,"=").replace(/\,/g,"&");
+        var url = baseUrl + JSON.stringify(obj).replace(/[\"\{\}]/g, "").replace(/\:/g, "=").replace(/\,/g, "&");
         return url
-    };
+    }
 }
