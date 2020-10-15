@@ -10,10 +10,10 @@ $page = (isset($_GET['page']) ? $_GET['page'] : 1);
 <html>
 <link rel="stylesheet" href="../assets/css/setting_common.css">
 <body>
-<link href="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.css" rel="stylesheet">
-<script src="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.js"></script>
-<link href="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
-<script src="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.min.js"></script>
+<link href="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.css" rel="stylesheet">
+<script src="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.js"></script>
+<link href="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
+<script src="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.min.js"></script>
 <link rel="stylesheet" href="../assets/css/users_common.css">
 <script src="../assets/js/setting_common.js"></script>
 <script>
@@ -37,10 +37,10 @@ $page = (isset($_GET['page']) ? $_GET['page'] : 1);
 
 function init_library()
 {
-    echo '<link href="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.css" rel="stylesheet">';
-    echo '<script src="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.js"></script>';
-    echo '<link href="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.min.css" rel="stylesheet">';
-    echo '<script src="../assets/zui_package/1.9.1/lib/datetimepicker/datetimepicker.min.js"></script>';
+    echo '<link href="../assets/zui_package/1.9.2/lib/datetimepicker/datetimepicker.css" rel="stylesheet">';
+    echo '<script src="../assets/zui_package/1.9.2/lib/datetimepicker/datetimepicker.js"></script>';
+    echo '<link href="../assets/zui_package/1.9.2/lib/datetimepicker/datetimepicker.min.css" rel="stylesheet">';
+    echo '<script src="../assets/zui_package/1.9.2/lib/datetimepicker/datetimepicker.min.js"></script>';
 }
 
 $my = isset($_GET['my']) ? $_GET['my'] : null;
@@ -474,7 +474,7 @@ else
                         $user_status_mail = "<b style='color: red'>未激活</b>";
                     else
                         $user_status_mail = "<b>已激活</b>";
-                    echo '<tr><td>' . '<a href="./users.php?my=edit&id=' . $res['jobid'] . '" class="btn btn-info btn-xs">编辑</a>&nbsp;<a href="./users.php?my=delete&jobid=' . $res['jobid'] . '" class="btn btn-xs btn-danger" onclick="return confirm(\'你确实要删除此用户吗？\');">删除</a></td><td>' . $user_status_mail . '</td><td><img data-toggle="lightbox" src="' . $res['user_avatar'] . '" data-image="' . $res['user_avatar'] . '" data-caption="avatar" class="img-thumbnail" alt="" width="50" style="pointer-events: none;margin:0 auto;"></td><td><b>' . $res['account'] . '</b></td><td>' . $res['password'] . '</td><td>' . $res['private_name'] . '</td><td>' . $res['private_phoneNumber'] . '</td><td>' . $res['user_birthday'] . '</td><td>' . $res['user_email'] . '</td><td>' . $res['user_key'] . '</td><td>' . $user_level_now . '</td><td>' . $log_level_now . '</td><td>' . $res['user_available_date'] . '</td></tr>';
+                    echo '<tr><td>' . '<a href="./users.php?my=edit&id=' . $res['jobid'] . '" class="btn btn-info btn-xs">编辑</a>&nbsp;<a href="./users.php?my=delete&jobid=' . $res['jobid'] . '" class="btn btn-xs btn-danger" onclick="return confirm(\'你确实要删除此用户吗？\');">删除</a></td><td>' . $user_status_mail . '</td><td><img data-toggle="lightbox" src="' . $res['user_avatar'] . '" data-image="' . $res['user_avatar'] . '" data-caption="avatar" class="img-thumbnail" alt="" width="50" style="pointer-events: none;margin:0 auto;"></td><td><b>' . $res['account'] . '</b></td><td>' . $res['password'] . '</td><td>' . $res['private_name'] . '</td><td>' . $res['user_phoneNumber'] . '</td><td>' . $res['user_birthday'] . '</td><td>' . $res['user_email'] . '</td><td>' . $res['user_key'] . '</td><td>' . $user_level_now . '</td><td>' . $log_level_now . '</td><td>' . $res['user_available_date'] . '</td></tr>';
                 }
                 ?>
                 </tbody>

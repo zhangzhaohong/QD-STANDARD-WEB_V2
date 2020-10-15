@@ -15,5 +15,6 @@ SET FOREIGN_KEY_CHECKS = 0;
 
 ALTER TABLE `users` ADD `user_phoneNumber` text;
 ALTER TABLE `users` ADD `user_avatar` text;
+ALTER TABLE `users` ADD `signed_times` text;
 
 SET FOREIGN_KEY_CHECKS = 1;

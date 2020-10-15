@@ -100,11 +100,11 @@ function clearpack() {
     <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no,minimal-ui">
     <title>DC自助授权系统管理中心</title>
     <!-- ZUI 标准版压缩后的 CSS 文件 -->
-    <link rel="stylesheet" href="../assets/zui_package/1.9.1/css/zui.min.css">
+    <link rel="stylesheet" href="../assets/zui_package/1.9.2/css/zui.min.css">
     <!-- ZUI Javascript 依赖 jQuery -->
-    <script src="../assets/zui_package/1.9.1/lib/jquery/jquery.js"></script>
+    <script src="../assets/zui_package/1.9.2/lib/jquery/jquery.js"></script>
     <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
-    <script src="../assets/zui_package/1.9.1/js/zui.min.js"></script>
+    <script src="../assets/zui_package/1.9.2/js/zui.min.js"></script>
     <!--<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>-->
 </head>
 <body>
@@ -145,10 +145,10 @@ function clearpack() {
                                 <span class="sr-only">10%</span>
                             </div>
                         </div>
-                        <link href="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.css" rel="stylesheet">
-                        <script src="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.js"></script>
-                        <link href="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
-                        <script src="../assets/zui_package/1.9.1/lib/datagrid/zui.datagrid.min.js"></script>
+                        <link href="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.css" rel="stylesheet">
+                        <script src="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.js"></script>
+                        <link href="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.min.css" rel="stylesheet">
+                        <script src="../assets/zui_package/1.9.2/lib/datagrid/zui.datagrid.min.js"></script>
                         <div class="table-responsive">
                             <table class="table table-bordered scrollbar-hover" id="tableDataGrid">
                                 <thead>

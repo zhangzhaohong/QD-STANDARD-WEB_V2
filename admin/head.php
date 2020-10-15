@@ -2,9 +2,11 @@
 include_once '../includes/common.php';
 include_once '../includes/member.php';
 //include '../includes/function.php';
-if($islogin==1){}else exit("<script language='javascript'>window.location.href='login.php';</script>");
+if ($islogin == 1) {
+} else exit("<script language='javascript'>window.location.href='login.php';</script>");
 $index_file = 'index';
 $users_file = 'users,users_data,users_data_config';
+$course_file = 'course_manager';
 $setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setting_mail,setting_bottom,update_system';
 ?>
 <html>
@@ -13,20 +15,22 @@ $setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setti
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ZUI 标准版压缩后的 CSS 文件 -->
-    <link rel="stylesheet" href="../assets/zui_package/1.9.1/css/zui.min.css">
+    <link rel="stylesheet" href="../assets/zui_package/1.9.2/css/zui.min.css">
     <!-- ZUI Javascript 依赖 jQuery -->
-    <script src="../assets/zui_package/1.9.1/lib/jquery/jquery.js"></script>
+    <script src="../assets/zui_package/1.9.2/lib/jquery/jquery.js"></script>
     <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
-    <script src="../assets/zui_package/1.9.1/js/zui.min.js"></script>
-    <title><?php echo $title;?></title>
+    <script src="../assets/zui_package/1.9.2/js/zui.min.js"></script>
+    <title><?php echo $title; ?></title>
 </head>
 <body>
 <?php
-if (checkmobile()) {?>
+if (checkmobile()) { ?>
     <div class="col-sm-4" style="margin-top: 10px;">
         <ul class="nav nav-stacked nav-pills">
-            <li class="nav-heading"><strong style="font-size: 15px;color: #4a59b4"><a href="index.php" style="border-bottom: #ffffff;"><i class="icon icon-desktop"></i>&nbsp;管理中心</a></strong></li>
-            <li class="<?php echo checkIfActive($file, $index_file)?>">
+            <li class="nav-heading"><strong style="font-size: 15px;color: #4a59b4"><a href="index.php"
+                                                                                      style="border-bottom: #ffffff;"><i
+                                class="icon icon-desktop"></i>&nbsp;管理中心</a></strong></li>
+            <li class="<?php echo checkIfActive($file, $index_file) ?>">
                 <a href="index.php">首页 </a>
             </li>
             <li>
@@ -35,7 +39,7 @@ if (checkmobile()) {?>
             <li>
                 <a href="###">项目 </a>
             </li>
-            <li class="<?php echo checkIfActive($file, $users_file)?>">
+            <li class="<?php echo checkIfActive($file, $users_file) ?>">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">用户管理 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -49,7 +53,15 @@ if (checkmobile()) {?>
                     </li>
                 </ul>
             </li>
-            <li class="<?php echo checkIfActive($file, $setting_file)?>">
+            <li class="<?php echo checkIfActive($file, $course_file) ?>">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课管理 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="course_manager.php">课程列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="<?php echo checkIfActive($file, $setting_file) ?>">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">系统设置 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
@@ -80,12 +92,14 @@ if (checkmobile()) {?>
             </li>
         </ul>
     </div>
-    <?php }else {?>
+<?php } else { ?>
     <article>
         <div class="nav-view" style="min-width: 320px;">
             <ul class="nav nav-justified nav-tabs" style="margin-top: 10px;">
-                <li class="nav-heading"><strong style="font-size: 20px;color: #4a59b4;margin: 10px;"><a href="index.php" style="border-bottom: #ffffff;"><i class="icon icon-10x icon-desktop"></i>&nbsp;管理中心</a></strong></li>
-                <li class="<?php echo checkIfActive($file, $index_file)?>">
+                <li class="nav-heading"><strong style="font-size: 20px;color: #4a59b4;margin: 10px;"><a href="index.php"
+                                                                                                        style="border-bottom: #ffffff;"><i
+                                    class="icon icon-10x icon-desktop"></i>&nbsp;管理中心</a></strong></li>
+                <li class="<?php echo checkIfActive($file, $index_file) ?>">
                     <a href="index.php">首页</a>
                 </li>
                 <li>
@@ -94,7 +108,7 @@ if (checkmobile()) {?>
                 <li class="disabled">
                     <a href="###">项目</a>
                 </li>
-                <li class="<?php echo checkIfActive($file, $users_file)?>">
+                <li class="<?php echo checkIfActive($file, $users_file) ?>">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">用户管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -108,7 +122,15 @@ if (checkmobile()) {?>
                         </li>
                     </ul>
                 </li>
-                <li class="<?php echo checkIfActive($file, $setting_file)?>">
+                <li class="<?php echo checkIfActive($file, $course_file) ?>">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课管理 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="course_manager.php">课程列表</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="<?php echo checkIfActive($file, $setting_file) ?>">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">系统设置 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
@@ -140,7 +162,7 @@ if (checkmobile()) {?>
             </ul>
         </div>
     </article>
-    <?php }?>
+<?php } ?>
 <body>
 </html>
 
