@@ -18,10 +18,10 @@ SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `app_debug_manager`;
 CREATE TABLE `app_debug_manager` (
                                      `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                     `app_id` text,
-                                     `app_debug_account` text,
-                                     `app_debug_user_code` text,
-                                     `app_debug_is_allowed` text,
+                                     `app_id` varchar(255),
+                                     `app_debug_account` varchar(255),
+                                     `app_debug_user_code` varchar(255),
+                                     `app_debug_is_allowed` varchar(255),
                                      PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -35,15 +35,15 @@ COMMIT;
 DROP TABLE IF EXISTS `app_infos`;
 CREATE TABLE `app_infos` (
                              `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                             `app_key` text,
-                             `app_name` text,
-                             `app_package_name` text,
-                             `app_is_beta` text,
-                             `app_is_apply_beta` text,
-                             `app_is_debug` text,
+                             `app_key` varchar(255),
+                             `app_name` varchar(255),
+                             `app_package_name` varchar(255),
+                             `app_is_beta` varchar(255),
+                             `app_is_apply_beta` varchar(255),
+                             `app_is_debug` varchar(255),
                              `app_beta_available_date` datetime DEFAULT NULL,
-                             `app_secret_key` text,
-                             `app_debug_key` text,
+                             `app_secret_key` varchar(255),
+                             `app_debug_key` varchar(255),
                              `app_key_available_date` datetime DEFAULT NULL,
                              PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -58,11 +58,11 @@ COMMIT;
 DROP TABLE IF EXISTS `app_manager`;
 CREATE TABLE `app_manager` (
                                `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                               `app_id` text,
-                               `app_type` text,
-                               `kind` text,
-                               `random_key` text,
-                               `status` text,
+                               `app_id` varchar(255),
+                               `app_type` varchar(255),
+                               `kind` varchar(255),
+                               `random_key` varchar(255),
+                               `status` varchar(255),
                                PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -76,13 +76,13 @@ COMMIT;
 DROP TABLE IF EXISTS `app_notice_manager`;
 CREATE TABLE `app_notice_manager` (
                                       `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                      `app_id` text,
-                                      `app_type` text,
-                                      `app_low_version` text,
-                                      `app_top_version` text,
-                                      `status` text,
-                                      `random_key` text,
-                                      `random_key_app` text,
+                                      `app_id` varchar(255),
+                                      `app_type` varchar(255),
+                                      `app_low_version` varchar(255),
+                                      `app_top_version` varchar(255),
+                                      `status` varchar(255),
+                                      `random_key` varchar(255),
+                                      `random_key_app` varchar(255),
                                       PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -96,13 +96,13 @@ COMMIT;
 DROP TABLE IF EXISTS `app_update_manager`;
 CREATE TABLE `app_update_manager` (
                                       `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                      `app_id` text,
-                                      `app_type` text,
-                                      `app_low_version` text,
-                                      `app_top_version` text,
-                                      `status` text,
-                                      `random_key` text,
-                                      `random_key_app` text,
+                                      `app_id` varchar(255),
+                                      `app_type` varchar(255),
+                                      `app_low_version` varchar(255),
+                                      `app_top_version` varchar(255),
+                                      `status` varchar(255),
+                                      `random_key` varchar(255),
+                                      `random_key_app` varchar(255),
                                       PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -116,15 +116,15 @@ COMMIT;
 DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config` (
                           `k` varchar(32) NOT NULL,
-                          `v` text,
+                          `v` varchar(255),
                           PRIMARY KEY (`k`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of config
 -- ----------------------------
 BEGIN;
-INSERT INTO `config` VALUES ('admin_pwd', 'h0ngOOO814');
-INSERT INTO `config` VALUES ('admin_user', 'zhangzhaohong');
+INSERT INTO `config` VALUES ('admin_pwd', 'admin');
+INSERT INTO `config` VALUES ('admin_user', 'superadmin');
 INSERT INTO `config` VALUES ('announce', '');
 INSERT INTO `config` VALUES ('bottom', '');
 INSERT INTO `config` VALUES ('cache', '');
@@ -150,13 +150,13 @@ COMMIT;
 DROP TABLE IF EXISTS `notice_manager`;
 CREATE TABLE `notice_manager` (
                                   `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                  `random_key` text,
-                                  `app_id` text,
-                                  `app_type` text,
-                                  `app_notice_version` text,
-                                  `app_notice_content` text,
-                                  `app_notice_available_date` text,
-                                  `status` text,
+                                  `random_key` varchar(255),
+                                  `app_id` varchar(255),
+                                  `app_type` varchar(255),
+                                  `app_notice_version` varchar(255),
+                                  `app_notice_content` varchar(255),
+                                  `app_notice_available_date` varchar(255),
+                                  `status` varchar(255),
                                   PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -174,8 +174,8 @@ CREATE TABLE `qiu_cjs` (
                            `addtime` date DEFAULT NULL,
                            `lasttime` date DEFAULT NULL,
                            `endtime` date DEFAULT NULL,
-                           `app_jobid` text,
-                           `app_type` text,
+                           `app_jobid` varchar(255),
+                           `app_type` varchar(255),
                            PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -196,7 +196,7 @@ CREATE TABLE `qiu_kms` (
                            `user` varchar(50) DEFAULT NULL,
                            `usetime` datetime DEFAULT NULL,
                            `addtime` datetime DEFAULT NULL,
-                           `app_type` text,
+                           `app_type` varchar(255),
                            PRIMARY KEY (`id`),
                            KEY `km` (`km`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -210,8 +210,8 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `register_manager`;
 CREATE TABLE `register_manager` (
-                                    `imei` text NOT NULL,
-                                    `times` text NOT NULL
+                                    `imei` varchar(255) NOT NULL,
+                                    `times` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- Records of register_manager
@@ -224,19 +224,19 @@ COMMIT;
 DROP TABLE IF EXISTS `update_manager`;
 CREATE TABLE `update_manager` (
                                   `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                  `random_key` text,
-                                  `app_id` text,
-                                  `app_type` text,
-                                  `app_build` text,
-                                  `app_version` text,
-                                  `app_software_version` text,
-                                  `app_code` text,
-                                  `app_update_content` text,
-                                  `app_update_url` text,
-                                  `app_update_code` text,
-                                  `app_update_available_date` text,
-                                  `app_is_must_update` text,
-                                  `status` text,
+                                  `random_key` varchar(255),
+                                  `app_id` varchar(255),
+                                  `app_type` varchar(255),
+                                  `app_build` varchar(255),
+                                  `app_version` varchar(255),
+                                  `app_software_version` varchar(255),
+                                  `app_code` varchar(255),
+                                  `app_update_content` varchar(255),
+                                  `app_update_url` varchar(255),
+                                  `app_update_code` varchar(255),
+                                  `app_update_available_date` varchar(255),
+                                  `app_is_must_update` varchar(255),
+                                  `status` varchar(255),
                                   PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -250,16 +250,16 @@ COMMIT;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
                          `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                         `account` text,
-                         `password` text,
-                         `private_name` text,
-                         `user_birthday` text,
-                         `user_email` text,
-                         `user_key` text,
-                         `user_level` text,
-                         `log_level` text,
-                         `user_available_date` text,
-                         `user_status` text,
+                         `account` varchar(255),
+                         `password` varchar(255),
+                         `private_name` varchar(255),
+                         `user_birthday` varchar(255),
+                         `user_email` varchar(255),
+                         `user_key` varchar(255),
+                         `user_level` varchar(255),
+                         `log_level` varchar(255),
+                         `user_available_date` varchar(255),
+                         `user_status` varchar(255),
                          PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8;
 -- ----------------------------
@@ -360,8 +360,8 @@ COMMIT;
 DROP TABLE IF EXISTS `users_data`;
 CREATE TABLE `users_data` (
                               `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                              `account` text,
-                              `user_key` text,
+                              `account` varchar(255),
+                              `user_key` varchar(255),
                               `integrals` int(11) DEFAULT '0',
                               `prestige` int(11) DEFAULT '0',
                               `grow_integrals` int(11) DEFAULT '0',
@@ -468,8 +468,8 @@ COMMIT;
 DROP TABLE IF EXISTS `users_data_config`;
 CREATE TABLE `users_data_config` (
                                      `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                     `kind` text,
-                                     `integrals` text,
+                                     `kind` varchar(255),
+                                     `integrals` varchar(255),
                                      `prestige` int(11) DEFAULT '0',
                                      `grow_integrals` int(11) DEFAULT '0',
                                      `vip` int(11) DEFAULT '1',
@@ -491,8 +491,8 @@ COMMIT;
 DROP TABLE IF EXISTS `users_manager`;
 CREATE TABLE `users_manager` (
                                  `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                 `account` text,
-                                 `user_status` text,
+                                 `account` varchar(255),
+                                 `user_status` varchar(255),
                                  `user_available_date` date NOT NULL,
                                  PRIMARY KEY (`jobid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -507,8 +507,8 @@ COMMIT;
 DROP TABLE IF EXISTS `users_member`;
 CREATE TABLE `users_member` (
                                 `jobid` int(11) NOT NULL AUTO_INCREMENT,
-                                `account` text,
-                                `user_key` text,
+                                `account` varchar(255),
+                                `user_key` varchar(255),
                                 `vip_endtime` date NOT NULL,
                                 `svip_endtime` date NOT NULL,
                                 PRIMARY KEY (`jobid`)

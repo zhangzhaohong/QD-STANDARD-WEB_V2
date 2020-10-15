@@ -28,12 +28,12 @@ if (
                 "code" => "-2",
                 "msg" => "数据库修改失败！"
             )));
-        if (!$DB->query("INSERT INTO `users_data`(`account`, `user_key`) VALUES ('" . $account . "','" . $user_key . "')"))
+        if (!$DB->query("INSERT INTO `users_data`(`account`, `user_key`) VALUES ('" . $userName . "','" . $user_key . "')"))
             exit(JSON(array(
                 "code" => "-2",
                 "msg" => "数据库修改失败！"
             )));
-        if (!$DB->query("INSERT INTO `users_member`(`account`, `user_key`) VALUES ('" . $account . "','" . $user_key . "')"))
+        if (!$DB->query("INSERT INTO `users_member`(`account`, `user_key`) VALUES ('" . $userName . "','" . $user_key . "')"))
             exit(JSON(array(
                 "code" => "-2",
                 "msg" => "数据库修改失败！"

@@ -6,7 +6,7 @@ if ($islogin == 1) {
 } else exit("<script language='javascript'>window.location.href='login.php';</script>");
 $index_file = 'index';
 $users_file = 'users,users_data,users_data_config';
-$course_file = 'course_manager';
+$course_file = 'course_manager,course_student_manager,course_student_search';
 $setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setting_mail,setting_bottom,update_system';
 ?>
 <html>
@@ -33,12 +33,12 @@ if (checkmobile()) { ?>
             <li class="<?php echo checkIfActive($file, $index_file) ?>">
                 <a href="index.php">首页 </a>
             </li>
-            <li>
+            <!--<li>
                 <a href="###">动态 <span class="label label-badge label-success pull-right">4</span></a>
             </li>
             <li>
                 <a href="###">项目 </a>
-            </li>
+            </li>-->
             <li class="<?php echo checkIfActive($file, $users_file) ?>">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="">用户管理 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -58,6 +58,12 @@ if (checkmobile()) { ?>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="course_manager.php">课程列表</a>
+                    </li>
+                    <li>
+                        <a href="course_student_manager.php">课程学生管理</a>
+                    </li>
+                    <li>
+                        <a href="course_student_search.php">课程学生搜索</a>
                     </li>
                 </ul>
             </li>
@@ -102,12 +108,12 @@ if (checkmobile()) { ?>
                 <li class="<?php echo checkIfActive($file, $index_file) ?>">
                     <a href="index.php">首页</a>
                 </li>
-                <li>
+                <!--<li>
                     <a href="###">动态</a>
                 </li>
                 <li class="disabled">
                     <a href="###">项目</a>
-                </li>
+                </li>-->
                 <li class="<?php echo checkIfActive($file, $users_file) ?>">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">用户管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -127,6 +133,12 @@ if (checkmobile()) { ?>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="course_manager.php">课程列表</a>
+                        </li>
+                        <li>
+                            <a href="course_student_manager.php">课程学生管理</a>
+                        </li>
+                        <li>
+                            <a href="course_student_search.php">课程学生搜索</a>
                         </li>
                     </ul>
                 </li>
