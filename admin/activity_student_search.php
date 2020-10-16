@@ -1,8 +1,8 @@
 <?php
 /**
- * 学生参加活动搜索
+ * 活动参加情况搜索
  **/
-$title = '学生参加活动搜索';
+$title = '活动参加情况搜索';
 $file = 'course_student_search';
 include_once 'head.php';
 ?>

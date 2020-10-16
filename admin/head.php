@@ -6,7 +6,7 @@ if ($islogin == 1) {
 } else exit("<script language='javascript'>window.location.href='login.php';</script>");
 $index_file = 'index';
 $users_file = 'users,users_data,users_data_config';
-$course_file = 'course_manager,course_student_manager,course_student_search';
+$course_file = 'course_manager,course_student_manager,course_student_search,activity_manager,activity_student_manager,activity_student_search';
 $setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setting_mail,setting_bottom,update_system';
 ?>
 <html>
@@ -54,7 +54,7 @@ if (checkmobile()) { ?>
                 </ul>
             </li>
             <li class="<?php echo checkIfActive($file, $course_file) ?>">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课管理 <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课/活动管理 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="course_manager.php">课程列表</a>
@@ -64,6 +64,15 @@ if (checkmobile()) { ?>
                     </li>
                     <li>
                         <a href="course_student_search.php">课程学生搜索</a>
+                    </li>
+                    <li>
+                        <a href="activity_manager.php">活动列表</a>
+                    </li>
+                    <li>
+                        <a href="activity_student_manager.php">学生活动管理</a>
+                    </li>
+                    <li>
+                        <a href="activity_student_search.php">活动参加情况搜索</a>
                     </li>
                 </ul>
             </li>
@@ -129,7 +138,7 @@ if (checkmobile()) { ?>
                     </ul>
                 </li>
                 <li class="<?php echo checkIfActive($file, $course_file) ?>">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课管理 <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课/活动管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="course_manager.php">课程列表</a>
@@ -139,6 +148,15 @@ if (checkmobile()) { ?>
                         </li>
                         <li>
                             <a href="course_student_search.php">课程学生搜索</a>
+                        </li>
+                        <li>
+                            <a href="activity_manager.php">活动列表</a>
+                        </li>
+                        <li>
+                            <a href="activity_student_manager.php">学生活动管理</a>
+                        </li>
+                        <li>
+                            <a href="activity_student_search.php">活动参加情况搜索</a>
                         </li>
                     </ul>
                 </li>
