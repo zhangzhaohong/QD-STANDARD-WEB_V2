@@ -127,7 +127,7 @@ DROP TABLE IF EXISTS `config`;
 CREATE TABLE `config`
 (
     `k` varchar(32) NOT NULL,
-    `v` varchar(255),
+    `v` text,
     PRIMARY KEY (`k`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
