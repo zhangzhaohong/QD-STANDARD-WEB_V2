@@ -187,6 +187,17 @@ for (i = 0; i < items.length; i++) {
     }
 } elseif ($my == 'delete') {
     $jobid = $_GET['jobid'];
+    $stuInfo = $DB->get_row("SELECT * FROM course_stuInfo WHERE jobid='$jobid' limit 1");
+    if ($stuInfo) {
+        $courseJobid = $stuInfo['course_jobId'];
+        $courseInfo = $DB->get_row("SELECT * FROM course_data WHERE jobid='$courseJobid' limit 1");
+        if ($courseInfo) {
+            $stuNum = $stuInfo['course_studentNum'] - 1;
+            if ($stuNum < 0)
+                $stuNum = 0;
+            $DB->query("update course_data set course_studentNum='$stuNum' where jobid='{$courseJobid}'");
+        }
+    }
     $sql = "DELETE FROM course_stuInfo WHERE jobid='$jobid' limit 1";
     if ($DB->query($sql))
         echo '<script>SuccessSettingMessage();</script>';
