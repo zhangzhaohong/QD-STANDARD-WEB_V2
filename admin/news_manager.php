@@ -187,7 +187,7 @@ else
 
                 $rs = $DB->query("SELECT * FROM news_data WHERE {$sql} order by jobid desc limit $offset,$pagesize");
                 while ($res = $DB->fetch($rs)) {
-                    echo '<tr><td>' . '<a href="./news_manager.php?my=edit&id=' . $res['jobid'] . '" class="btn btn-info btn-xs">编辑</a>&nbsp;<a href="./news_manager.php?my=delete&jobid=' . $res['jobid'] . '" class="btn btn-xs btn-danger" onclick="return confirm(\'你确实要删除这条新闻吗？\');">删除</a></td><td>' . $res['title'] . '</td><td>' . $res['date'] . '</td><td><b>' . $res['status'] . '</b></td><td>' . $res['description'] . '</td></tr>';
+                    echo '<tr><td>' . '<a href="./news_manager.php?my=edit&id=' . $res['jobid'] . '" class="btn btn-info btn-xs">编辑</a>&nbsp;<a href="./news_manager.php?my=delete&jobid=' . $res['jobid'] . '" class="btn btn-xs btn-danger" onclick="return confirm(\'你确实要删除这条新闻吗？\');">删除</a></td><td>' . $res['title'] . '</td><td>' . $res['date'] . '</td><td><b>' . $res['status'] . '</b></td></tr>';
                 }
                 ?>
                 </tbody>
