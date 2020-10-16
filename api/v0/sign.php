@@ -41,7 +41,7 @@ if ($course_id || $user_key) {
         } else {
             exit(JSON(array(
                 "code" => "-4",
-                "msg" => "今天你已经签到，请明日再来！"
+                "msg" => "今天您已经签到，请明日再来！"
             )));
         }
     } else {

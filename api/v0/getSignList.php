@@ -34,7 +34,7 @@ if ($user_key) {
             if ($res['signed_time'] <= $rows['course_length']) {
                 if ($res['signed_date'] == "" || $res['signed_date'] == null) {
                     $haveSigned = '0';
-                } else if ($res['signed_date'] < date("Ymd")) {
+                } else if ($res['signed_date'] >= date("Ymd")) {
                     $haveSigned = '1';
                 } else {
                     $haveSigned = '0';
