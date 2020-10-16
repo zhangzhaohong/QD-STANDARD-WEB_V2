@@ -50,7 +50,6 @@ if ($my == 'add')
 value="确定添加"></form>';
     echo '<br/><a href="./activity_manager.php">>>返回活动列表</a>';
     echo '</div></div>';
-    echo '<script>initDatePicker();</script>';
 } elseif ($my == 'edit') {
     $id = $_GET['id'];
     $row = $DB->get_row("select * from activity_data where jobid='$id' limit 1");
@@ -84,7 +83,6 @@ value="确定修改"></form>
 ';
     echo '<br/><a href="./activity_manager.php">>>返回活动列表</a>';
     echo '</div></div>
-<script>initDatePicker();</script>
 <script>
 var items = $("select[default]");
 for (i = 0; i < items.length; i++) {
