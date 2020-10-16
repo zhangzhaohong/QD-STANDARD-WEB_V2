@@ -1,1 +1,0 @@
-UPDATE `config` SET v = '1' WHERE k = 'service_Status';

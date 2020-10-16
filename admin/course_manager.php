@@ -314,6 +314,12 @@ for (i = 0; i < items.length; i++) {
 } elseif ($my == 'delete') {
     $jobid = $_GET['jobid'];
     $sql = "DELETE FROM course_data WHERE jobid='$jobid' limit 1";
+    $rs = $DB->query("SELECT * FROM course_stuInfo WHERE course_jobid='$jobid' order by jobid desc");
+    while ($res = $DB->fetch($rs)) {
+        $jobIdData = $res['jobid'];
+        $del = "DELETE FROM course_stuInfo WHERE jobid='$jobIdData' limit 1";
+        $DB->query($del);
+    }
     if ($DB->query($sql))
         echo '<script>SuccessSettingMessage();</script>';
     else
