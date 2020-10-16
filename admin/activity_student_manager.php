@@ -47,7 +47,6 @@ if ($my == 'add')
 value="确定添加"></form>';
     echo '<br/><a href="./activity_student_manager.php">>>返回学生活动管理</a>';
     echo '</div></div>';
-    echo '<script>initDatePicker();</script>';
 } elseif ($my == 'add_submit') {
     $activity_id = $_POST['activity_id'];
     $user_id = $_POST['user_id'];
