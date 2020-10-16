@@ -9,7 +9,7 @@ if ($course_id || $user_key) {
     $enjoyRow = $DB->get_row("SELECT * FROM course_stuInfo WHERE student_userKey='{$user_key}' and course_jobId='{$course_id}' limit 1");
     if ($enjoyRow) {
         $signedDate = date("Ymd");
-        if ($enjoyRow['$signedDate'] == "" || $enjoyRow['signed_time'] != null && $enjoyRow['$signedDate'] < $signedDate) {
+        if ($enjoyRow['signed_date'] == "" || $enjoyRow['signed_time'] != null && $enjoyRow['signed_date'] < $signedDate) {
             if ($enjoyRow['signed_time'] == "" || $enjoyRow['signed_time'] == null) {
                 $signedTime = '0';
             } else {
