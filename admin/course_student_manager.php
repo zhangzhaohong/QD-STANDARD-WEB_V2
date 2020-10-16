@@ -69,7 +69,7 @@ if ($my == 'add')
 <input type="text" class="form-control" name="user_id" value="" required>
 </div>
 <input type="submit" class="btn btn-primary btn-block"
-value="确定修改"></form>';
+value="确定添加"></form>';
     echo '<br/><a href="./course_student_manager.php">>>返回课程学生管理</a>';
     echo '</div></div>';
     echo '<script>initDatePicker();</script>';
@@ -155,10 +155,8 @@ for (i = 0; i < items.length; i++) {
                     echo '<script>FailedSettingMessage();</script>';
                 $courseRow = $DB->get_row("SELECT * FROM course_data WHERE jobid='{$course_id}' limit 1");
                 if ($courseRow) {
-                    if ($courseRow['course_studentNum'] < $courseRow['course_total']) {
-                        $stuNum = $courseRow['course_studentNum'] + 1;
-                        $DB->query("update course_data set course_studentNum='$stuNum' where jobid='{$course_id}'");
-                    }
+                    $stuNum = $courseRow['course_studentNum'] + 1;
+                    $DB->query("update course_data set course_studentNum='$stuNum' where jobid='{$course_id}'");
                 }
                 echo '<script>SuccessSettingMessage();</script>';
             }
