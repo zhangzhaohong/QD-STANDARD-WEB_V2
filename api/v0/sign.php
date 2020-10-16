@@ -8,35 +8,42 @@ $user_key = $_GET['userKey'];
 if ($course_id || $user_key) {
     $enjoyRow = $DB->get_row("SELECT * FROM course_stuInfo WHERE student_userKey='{$user_key}' and course_jobId='{$course_id}' limit 1");
     if ($enjoyRow) {
-        if ($enjoyRow['signed_time'] == "" || $enjoyRow['signed_time'] == null) {
-            $signedTime = '0';
-        } else {
-            $signedTime = $enjoyRow['signed_time'];
-        }
-        $signedTime = $signedTime + 1;
         $signedDate = date("Ymd");
-        if (!$DB->query("update course_stuInfo set signed_time='$signedTime', signed_date='$signedDate' where jobid='{$course_id}'")) {
+        if ($enjoyRow['$signedDate'] == "" || $enjoyRow['signed_time'] != null && $enjoyRow['$signedDate'] < $signedDate) {
+            if ($enjoyRow['signed_time'] == "" || $enjoyRow['signed_time'] == null) {
+                $signedTime = '0';
+            } else {
+                $signedTime = $enjoyRow['signed_time'];
+            }
+            $signedTime = $signedTime + 1;
+            if (!$DB->query("update course_stuInfo set signed_time='$signedTime', signed_date='$signedDate' where jobid='{$course_id}'")) {
+                exit(JSON(array(
+                    "code" => "-3",
+                    "msg" => "数据库写入异常，签到失败！"
+                )));
+            }
+            $userRows = $DB->get_row("select * from users where user_key='{$user_key}' limit 1");
+            if ($userRows) {
+                if ($userRows['user_signed_times'] == "" || $userRows['user_signed_times'] == null) {
+                    $signed_times = 0;
+                } else {
+                    $signed_times = $userRows['user_signed_times'];
+                }
+            } else {
+                $signed_times = 0;
+            }
+            $signed_times = $signed_times + 1;
+            $DB->query("update users set signed_times='$signed_times' where user_key='{$user_key}'");
             exit(JSON(array(
-                "code" => "-3",
-                "msg" => "数据库写入异常，签到失败！"
+                "code" => "0",
+                "msg" => "签到成功！"
+            )));
+        } else {
+            exit(JSON(array(
+                "code" => "-4",
+                "msg" => "今天您已经签到，请明日再来！"
             )));
         }
-        $userRows = $DB->get_row("select * from users where user_key='{$user_key}' limit 1");
-        if ($userRows) {
-            if ($userRows['user_signed_times'] == "" || $userRows['user_signed_times'] == null) {
-                $signed_times = 0;
-            } else {
-                $signed_times = $userRows['user_signed_times'];
-            }
-        } else {
-            $signed_times = 0;
-        }
-        $signed_times = $signed_times + 1;
-        $DB->query("update users set signed_times='$signed_times' where user_key='{$user_key}'");
-        exit(JSON(array(
-            "code" => "0",
-            "msg" => "签到成功！"
-        )));
     } else {
         exit(JSON(array(
             "code" => "-2",
