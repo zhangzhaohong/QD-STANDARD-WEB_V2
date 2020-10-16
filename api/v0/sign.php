@@ -16,7 +16,7 @@ if ($course_id || $user_key) {
                 $signedTime = $enjoyRow['signed_time'];
             }
             $signedTime = $signedTime + 1;
-            if (!$DB->query("update course_stuInfo set signed_time='$signedTime', signed_date='$signedDate' where jobid='{$course_id}'")) {
+            if (!$DB->query("update course_stuInfo set signed_time='$signedTime', signed_date='$signedDate' where course_jobid='{$course_id}'")) {
                 exit(JSON(array(
                     "code" => "-3",
                     "msg" => "数据库写入异常，签到失败！"
