@@ -24,10 +24,10 @@ if ($course_id || $user_key) {
             }
             $userRows = $DB->get_row("select * from users where user_key='{$user_key}' limit 1");
             if ($userRows) {
-                if ($userRows['user_signed_times'] == "" || $userRows['user_signed_times'] == null) {
+                if ($userRows['signed_times'] == "" || $userRows['signed_times'] == null) {
                     $signed_times = 0;
                 } else {
-                    $signed_times = $userRows['user_signed_times'];
+                    $signed_times = $userRows['signed_times'];
                 }
             } else {
                 $signed_times = 0;
