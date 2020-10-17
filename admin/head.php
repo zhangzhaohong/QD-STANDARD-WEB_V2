@@ -55,7 +55,7 @@ if (checkmobile()) { ?>
                 </ul>
             </li>
             <li class="<?php echo checkIfActive($file, $course_file) ?>">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课/活动管理 <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">课程/活动管理 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="course_manager.php">课程列表</a>
@@ -78,7 +78,7 @@ if (checkmobile()) { ?>
                 </ul>
             </li>
             <li class="<?php echo checkIfActive($file, $menu_file) ?>">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="">菜单/食堂新闻管理 <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">菜单/新闻管理 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="menu_manager.php">菜单管理</a>
@@ -150,7 +150,7 @@ if (checkmobile()) { ?>
                     </ul>
                 </li>
                 <li class="<?php echo checkIfActive($file, $course_file) ?>">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">课程选课/活动管理 <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">课程/活动管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="course_manager.php">课程列表</a>
@@ -173,7 +173,7 @@ if (checkmobile()) { ?>
                     </ul>
                 </li>
                 <li class="<?php echo checkIfActive($file, $menu_file) ?>">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">菜单/食堂新闻管理 <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">菜单/新闻管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="menu_manager.php">菜单管理</a>
