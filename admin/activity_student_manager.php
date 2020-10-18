@@ -85,6 +85,17 @@ value="确定添加"></form>';
     }
 } elseif ($my == 'delete') {
     $jobid = $_GET['jobid'];
+    $actInfo = $DB->get_row("SELECT * FROM activity_stuInfo WHERE jobid='$jobid' limit 1");
+    if ($actInfo) {
+        $activityJobid = $actInfo['activity_jobId'];
+        $activityInfo = $DB->get_row("SELECT * FROM activity_data WHERE jobid='$activityJobid' limit 1");
+        if ($activityInfo) {
+            $stuNum = $activityInfo['activity_joinedNum'] - 1;
+            if ($stuNum < 0)
+                $stuNum = 0;
+            $DB->query("update activity_data set activity_joinedNum='$stuNum' where jobid='{$activityJobid}'");
+        }
+    }
     $sql = "DELETE FROM activity_stuInfo WHERE jobid='$jobid' limit 1";
     if ($DB->query($sql))
         echo '<script>SuccessSettingMessage();</script>';
