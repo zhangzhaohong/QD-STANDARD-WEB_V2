@@ -6,7 +6,7 @@ $activity_id = $_GET['activityId'];
 $user_key = $_GET['userKey'];
 
 if ($activity_id || $user_key) {
-    $enjoyRow = $DB->get_row("SELECT * FROM activity_stuInfo WHERE student_userKey='{$user_key}' and activity_jobId='{$course_id}' limit 1");
+    $enjoyRow = $DB->get_row("SELECT * FROM activity_stuInfo WHERE student_userKey='{$user_key}' and activity_jobId='{$activity_id}' limit 1");
     if ($enjoyRow) {
         exit(JSON(
             array(
