@@ -6,7 +6,7 @@ if ($islogin == 1) {
 } else exit("<script language='javascript'>window.location.href='login.php';</script>");
 $index_file = 'index';
 $users_file = 'users,users_data,users_data_config';
-$course_file = 'course_manager,course_student_manager,course_student_search,activity_manager,activity_student_manager,activity_student_search';
+$course_file = 'course_manager,course_student_manager,course_student_search,activity_manager,activity_student_manager,activity_student_search,live_data_manager';
 $setting_file = 'setting_common,setting_logo,setting_announce,setting_keys,setting_mail,setting_bottom,update_system';
 $menu_file = 'menu_manager,news_manager';
 ?>
@@ -55,7 +55,7 @@ if (checkmobile()) { ?>
                 </ul>
             </li>
             <li class="<?php echo checkIfActive($file, $course_file) ?>">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="">课程/活动管理 <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">课程/活动/音视频管理 <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <a href="course_manager.php">课程列表</a>
@@ -74,6 +74,9 @@ if (checkmobile()) { ?>
                     </li>
                     <li>
                         <a href="activity_student_search.php">活动参加情况搜索</a>
+                    </li>
+                    <li>
+                        <a href="live_data_manager.php">音视频管理</a>
                     </li>
                 </ul>
             </li>
@@ -150,7 +153,7 @@ if (checkmobile()) { ?>
                     </ul>
                 </li>
                 <li class="<?php echo checkIfActive($file, $course_file) ?>">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">课程/活动管理 <span class="caret"></span></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">课程/活动/音视频管理 <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="course_manager.php">课程列表</a>
@@ -169,6 +172,9 @@ if (checkmobile()) { ?>
                         </li>
                         <li>
                             <a href="activity_student_search.php">活动参加情况搜索</a>
+                        </li>
+                        <li>
+                            <a href="live_data_manager.php">音视频管理</a>
                         </li>
                     </ul>
                 </li>
